@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Author } from '../author';
 
 @Component({
   selector: 'app-author-create',
@@ -24,5 +25,15 @@ export class AuthorCreateComponent implements OnInit {
       description: ["", [Validators.required, Validators.maxLength(100)]]
     })
   }
+
+  createAuthor(author: Author){
+    console.info("The author was created: ", author)
+    this.toastr.success("Confirmation", "Author created")
+    this.authorForm.reset();
+  }
+
+  cancelCreation(){
+    this.authorForm.reset();
+ }
 
 }
